@@ -1,17 +1,27 @@
-import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import SignIn from './pages/signIn';
+import './App.css'
+import './services/firebase/firebaseService'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SignIn from './pages/signIn/index'
 // import SiginUp from '@/pages/sign-up/SignUp
+import Dashboard from './pages/dashboard/index'
+import Loader from './components/Loader/Loader'
+import { useAppSelector } from './customHooks/useStore'
 
 function App() {
+  const showLoader = useAppSelector((state) => state.loader.loading)
+
   return (
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<SignIn />} />
-            <Route path="/sign-in" element={<SignIn />} />
-            {/* <Route path="/sign-up" element={<SiginUp />} /> */}
-        </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<SignIn />} />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              {/* <Route path="/sign-up" element={<SiginUp />} /> */}
+          </Routes>
+      </BrowserRouter>
+      {showLoader && <Loader />}
+    </>
   );
 }
 

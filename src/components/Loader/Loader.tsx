@@ -14,7 +14,7 @@ const Loader: React.FC = () => {
   return createPortal(
     <div className={styles.loaderContainer}>
       <Box sx={{ display: 'flex' }}>
-        <CircularProgress />
+        <CircularProgress size={'100px'}/>
       </Box>
     </div>,
     root
