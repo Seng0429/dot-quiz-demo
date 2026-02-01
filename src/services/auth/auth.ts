@@ -1,14 +1,24 @@
-import { signInWithEmailAndPassword, UserCredential, User } from 'firebase/auth'
+import { 
+    signInWithEmailAndPassword,
+    UserCredential,
+    User,
+    onAuthStateChanged,
+    getAuth,
+    signOut as firebaseSignOut,
+    setPersistence,
+    browserSessionPersistence 
+} from 'firebase/auth'
 import { auth } from '../firebase/firebaseService'
 
-export const signIn = async (email: string, password: string) => {
-    try {
-        const result = await signInWithEmailAndPassword(auth, email, password)
-        return result
-        // { userId }
-    } catch(error) {
-        throw new Error('Error signing in')
-    }
+const signIn = async (email: string, password: string) => {
+    return setPersistence(auth, browserSessionPersistence)
+        .then(() => {
+            const result = signInWithEmailAndPassword(auth, email, password)
+            return result
+        })
+        .catch((error) => {
+            return error
+        })
 }
 
 const checkEmailStatus = (user: User) => new Promise((resolve) => {
@@ -28,38 +38,36 @@ const isUserActivated = async (userCredential: UserCredential) => {
 }
 
 const getCurrentUser = () => {
+    const user = getAuth().currentUser
+
+    if(!user) return null
+    return user
+}
+
+const addAuthListener = (callback: (arg0: {} | null) => void) => {
+    const onChange = (user: any) => {
+        if (user) {
+            callback({})
+        } else {
+            callback(null)
+        }
+    }
+
+    return onAuthStateChanged(auth, onChange)
+}
+
+const signOut = async () => {
     try {
-        return auth.currentUser
+        await firebaseSignOut(auth)
     } catch(error) {
-        throw new Error('Error getting current user')
+        throw new Error('Error signing out')
     }
 }
 
-// export const addAuthListener = (callback) => {
-//     const onChange = (user) => {
-//         if (user) {
-//             callback({})
-//         } else {
-//             callback(null)
-//         }
-//     }
-
-//     return onAuthStateChanged(onChange)
-// }
-
-// export const signOut = async () => {
-//     try {
-//         await firebase.auth().signOut()
-//     } catch(error) {
-//         throw new Error('Error signing out')
-//     }
-// }
-
-const authService = {
+export {
     signIn,
     isUserActivated,
     getCurrentUser,
-    // addAuthListener,
-    // signOut
+    addAuthListener,
+    signOut
 }
-export default authService

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SignIn from './pages/signIn/index'
 // import SiginUp from '@/pages/sign-up/SignUp
 import Dashboard from './pages/dashboard/index'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Loader from './components/Loader/Loader'
 import { useAppSelector } from './customHooks/useStore'
 
@@ -14,10 +15,12 @@ function App() {
     <>
       <BrowserRouter>
           <Routes>
-              <Route path="/" element={<SignIn />} />
-              <Route path="/sign-in" element={<SignIn />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              {/* <Route path="/sign-up" element={<SiginUp />} /> */}
+                <Route path="/" element={<SignIn />} />
+                <Route path="/sign-in" element={<SignIn />} />
+                {/* <Route path="/sign-up" element={<SiginUp />} /> */}
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                </Route>
           </Routes>
       </BrowserRouter>
       {showLoader && <Loader />}

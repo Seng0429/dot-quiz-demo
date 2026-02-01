@@ -8,7 +8,10 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import IconButton from '@mui/material/IconButton'
 import useLoader from '../../../customHooks/useLoader'
-import authService from '../../../services/auth/auth'
+import {
+    signIn,
+    isUserActivated
+} from '../../../services/auth/auth'
 import Modal from '../../../components/Modal/Modal'
 import { useNavigate } from 'react-router-dom'
 
@@ -38,24 +41,22 @@ const SignInBox = () => {
     const loginHandler = async () => {
         try {
             showLoader()
-            const userCredential = await authService.signIn(email, password).then((response) => {
-                return response
-            }).catch((err) => {
-                setError(err.message)
-            })
-
+            const userCredential = await signIn(email, password)
             let isActivated = false
 
             if (userCredential) {
-                isActivated = await authService.isUserActivated(userCredential) as boolean
+                isActivated = await isUserActivated(userCredential) as boolean
             } else {
                 throw new Error('Error to check email status')
             }
+            
+            hideLoader()
 
             if (isActivated) {
                 navigate('/dashboard')
                 hideLoader()
             }
+            
         } catch(error: any) {
             hideLoader()
             setError(error ?? 'Something went wrong')
@@ -66,7 +67,6 @@ const SignInBox = () => {
     const cancelResendHandler = () => {
         setModalMessage(null)
         setError(null)
-        // setUserInfo(null)
     }
 
     const resendEmailHandler = () => {
@@ -76,31 +76,31 @@ const SignInBox = () => {
     return (
         <>
             <form className={style.signInBox} autoComplete='off'>
-                    <span className={style.font1}>Username (Email)</span>
-                    <Input
-                        className={style.inputField}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <span className={style.font1}>Password</span>
-                    <Input
-                        className={style.inputField}
-                        onChange={(e) => setPassword(e.target.value)}
-                        type={showPassword ? 'text' : 'password'}
-                        endAdornment={
-                            <InputAdornment position="end">
-                            <IconButton
-                                aria-label={
-                                    showPassword ? 'hide the password' : 'display the password'
-                                }
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                onMouseUp={handleMouseUpPassword}
-                            >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                            </InputAdornment>
-                        }
-                    />
+                <span className={style.font1}>Username (Email)</span>
+                <Input
+                    className={style.inputField}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <span className={style.font1}>Password</span>
+                <Input
+                    className={style.inputField}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type={showPassword ? 'text' : 'password'}
+                    endAdornment={
+                        <InputAdornment position="end">
+                        <IconButton
+                            aria-label={
+                                showPassword ? 'hide the password' : 'display the password'
+                            }
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            onMouseUp={handleMouseUpPassword}
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                        </InputAdornment>
+                    }
+                />
                 <div className={style.errorMessage}>
                     { error && <span>{error}</span> }
                 </div>

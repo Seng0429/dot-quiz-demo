@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import StoreProvider from './store/storeProvider';
+import AuthProvider from './services/auth/authProvider';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <StoreProvider>
-            <App />
-        </StoreProvider>
+        <AuthProvider>
+            <StoreProvider>
+                <App />
+            </StoreProvider>
+        </AuthProvider>
     </React.StrictMode>
 );
 
