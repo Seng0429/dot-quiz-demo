@@ -1,0 +1,39 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex-grow: 1;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom left, rgb(197, 221, 245), rgb(255, 255, 255));
+}
+
+.pageContainer > div {
+  overflow: auto;
+}
+
+.pageBody {
+  padding: 1rem;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section > h2 {
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.itemBoxContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .itemBoxContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
