@@ -22,6 +22,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={styles.dashboardContainer} onClick={() => setShowUserMenu(false)}>
+      
       <header className={styles.header}>
         <div>
           <h1 className={styles.appTitle}>Welcome to dotQuiz</h1>
@@ -54,7 +55,9 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </header>
+      
       <main className={styles.mainContent}>
+        
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitle}>QUIZZES</div>
@@ -76,6 +79,7 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </section>
+
         <section className={styles.section}>
           <div className={styles.sectionTitle}>UPCOMING SESSIONS</div>
           <div className={styles.tableWrapper}>
@@ -99,6 +103,7 @@ const Dashboard: React.FC = () => {
             </table>
           </div>
         </section>
+
         <section className={styles.section}>
           <div className={styles.sectionTitle}>COMPLETE SESSION</div>
           <div className={styles.tableWrapper}>
