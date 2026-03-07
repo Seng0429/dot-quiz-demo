@@ -19,13 +19,25 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
+        "src/*"
       ],
-      "@/components/*": [
-        "./src/app/components/*"
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@hooks/*": [
+        "src/customHooks/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@services/*": [
+        "src/services/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ]
     }
   },
