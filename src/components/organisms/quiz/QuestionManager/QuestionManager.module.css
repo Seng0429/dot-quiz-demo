@@ -1,0 +1,43 @@
+/* QuestionManager.module.css */
+
+.managerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+.cardWrapper {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.02); /* Ghostly inactive state */
+}
+
+/* The "Google Form" Active Effect */
+.activeCard {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(1.02); /* Subtle pop effect */
+  z-index: 10;
+}
+
+.addBtn {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: transparent;
+  border: 2px dashed var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.addBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #3b82f6; /* Highlight blue */
+  color: #fff;
+}

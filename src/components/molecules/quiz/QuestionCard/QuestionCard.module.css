@@ -1,0 +1,113 @@
+.cardContent {
+  padding: 1.5rem;
+  color: var(--text-main);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Mode Switcher (Google Form Style) */
+.modeToggle {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.modeBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.activeMode {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 1.2rem;
+}
+
+.deleteBtn:hover { opacity: 1; }
+
+/* Inputs */
+.questionInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 1rem;
+  color: #fff;
+  font-size: 1.1rem;
+  resize: none;
+  margin-bottom: 1.5rem;
+  outline: none;
+}
+
+.questionInput:focus { border-color: #3b82f6; }
+
+/* Options Grid */
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--glass-border);
+}
+
+.radioCircle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--text-dim);
+  border-radius: 50%;
+}
+
+.radioCircle.correct {
+  background: #10b981;
+  border-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.optionInput {
+  background: transparent;
+  border: none;
+  color: #fff;
+  flex: 1;
+  outline: none;
+}
+
+.addOptionBtn {
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}

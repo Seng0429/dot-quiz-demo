@@ -1,24 +1,66 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { 
   SettingOutlined, 
   LogoutOutlined,
   PlusOutlined,
-  EditOutlined,
   PlayCircleOutlined,
-  DeleteOutlined,
   DashboardOutlined
 } from '@ant-design/icons';
+import { getCurrentUser } from '@/services/auth/auth';
+import QuizCard from '@/components/atoms/QuizCard/QuizCard';
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate()
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const userEmail = "user@dotquiz.com";
+  const userEmail = getCurrentUser()?.email || '';
 
   const getInitial = (email: string) => email.charAt(0).toUpperCase();
 
   const handleLogout = () => {
     console.log("Logging out...");
   };
+
+  const handleQuizAction = (id: string, action: string) => {
+    switch (action) {
+      case 'Edit':
+        console.log(`Navigating to editor for quiz: ${id}`);
+        navigate(`/edit/${id}`)
+        break;
+      case 'Host':
+        console.log(`Starting session for quiz: ${id}`);
+        break;
+      case 'Delete':
+        console.log(`Triggering delete modal for: ${id}`);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const QuizCardList = [
+    {
+      id: '1',
+      title: 'Cyber Security 101',
+      questions: 20,
+    },
+    {
+      id: '2',
+      title: 'Cyber Security 102',
+      questions: 25,
+    },
+    {
+      id: '3',
+      title: 'Cyber Security 103',
+      questions: 30,
+    },
+    {
+      id: '4',
+      title: 'Cyber Security 104',
+      questions: 35,
+    }
+  ]
 
   return (
     <div className={styles.dashboardContainer} onClick={() => setShowUserMenu(false)}>
@@ -67,16 +109,16 @@ const Dashboard: React.FC = () => {
           </div>
 
           <div className={styles.quizGrid}>
-            <div className={styles.quizCard}>
-              <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-main)' }}>Cyber Security 101</h3>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-sub)', margin: 0 }}>Questions: 20</p>
-              
-              <div className={styles.controls} style={{marginTop: '1rem', display: 'flex', gap: '0.5rem'}}>
-                <button className={styles.iconBtn}><EditOutlined /> Edit</button>
-                <button className={styles.iconBtn}><PlayCircleOutlined /> Host</button>
-                <button className={styles.iconBtn}><DeleteOutlined /></button>
-              </div>
-            </div>
+            {
+              QuizCardList.map((quiz) => (
+                <QuizCard
+                  id={quiz.id}
+                  title={quiz.title}
+                  questions={quiz.questions}
+                  key={quiz.id} actionHandler={handleQuizAction}
+                />
+              ))
+            }
           </div>
         </section>
 

@@ -3,7 +3,7 @@ import './SignIn.css';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'; // Import Ant Icons
 
 import { signIn, isUserActivated } from '@services/auth/auth';
-import useLoader from '@hooks/useLoader';
+import useLoader from '@/Hooks/useLoader';
 import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {

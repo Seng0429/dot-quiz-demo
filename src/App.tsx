@@ -3,9 +3,10 @@ import '@services/firebase/firebaseService'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SignIn from '@pages/signIn/SignIn'
 import Dashboard from '@/pages/dashboard/Dashboard'
-import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute'
-import Loader from '@components/Loader/Loader'
-import { useAppSelector } from '@hooks/useStore'
+import ProtectedRoute from '@/components/atoms/ProtectedRoute/ProtectedRoute'
+import Loader from '@/components/atoms/Loader/Loader'
+import { useAppSelector } from '@/Hooks/useStore'
+import EditQuizPage from '@pages/EditQuizPage/EditQuizPage'
 
 function App() {
   const showLoader = useAppSelector((state) => state.loader.loading)
@@ -14,14 +15,11 @@ function App() {
     <>
       <BrowserRouter>
           <Routes>
-                <Route path="/" element={<SignIn />} />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route element={<ProtectedRoute />}>
-                    <Route path="/dashboard" element={<Dashboard />} />
-                </Route>
-
-                    {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                
+              <Route path="/" element={<SignIn />} />
+              <Route element={<ProtectedRoute />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path='/edit/:id' element={<EditQuizPage />} />
+              </Route>
           </Routes>
       </BrowserRouter>
       {showLoader && <Loader />}
