@@ -1,0 +1,76 @@
+.aurora-button-container {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+
+.magic-circle {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-text {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  z-index: 10;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+}
+
+/* The Waving Effect */
+.aurora-button-container:hover .magic-circle {
+  animation: wave-motion 4s infinite alternate ease-in-out;
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+  transform: scale(1.1);
+}
+
+.aurora-button-container:hover .button-text {
+  transform: scale(1.1);
+}
+
+/* Organic Morphing Animation */
+@keyframes wave-motion {
+  0% {
+    border-radius: 50%;
+  }
+  33% {
+    border-radius: 40% 60% 70% 30% / 50% 40% 60% 50%;
+  }
+  66% {
+    border-radius: 60% 40% 30% 70% / 40% 60% 40% 60%;
+  }
+  100% {
+    border-radius: 48% 52% 55% 45% / 50% 48% 52% 50%;
+  }
+}
+
+/* Subtle Aurora Glow Effect */
+.magic-circle::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  background: inherit;
+  filter: blur(15px);
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.6s ease;
+}
+
+.aurora-button-container:hover .magic-circle::before {
+  opacity: 0.4;
+}
