@@ -9,10 +9,11 @@ import {
   DashboardOutlined
 } from '@ant-design/icons';
 import { getCurrentUser } from '@/services/auth/auth';
-import QuizCard from '@/components/atoms/QuizCard/QuizCard';
+import QuizCard from '@/components/layouts/QuizCard/QuizCard';
+import { appPath } from '@/utils/constants';
 
 const Dashboard: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userEmail = getCurrentUser()?.email || '';
 
@@ -103,7 +104,7 @@ const Dashboard: React.FC = () => {
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitle}>QUIZZES</div>
-            <button className={styles.btnPrimary}>
+            <button className={styles.btnPrimary} onClick={() => navigate(`${appPath.edit}/q3`)}>
               <PlusOutlined /> New Quiz
             </button>
           </div>

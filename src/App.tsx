@@ -6,7 +6,8 @@ import Dashboard from '@/pages/dashboard/Dashboard'
 import ProtectedRoute from '@/components/atoms/ProtectedRoute/ProtectedRoute'
 import Loader from '@/components/atoms/Loader/Loader'
 import { useAppSelector } from '@/Hooks/useStore'
-import EditQuizPage from '@pages/EditQuizPage/EditQuizPage'
+// import EditQuizPage from '@pages/EditQuizPage/EditQuizPage'
+import EditQuiz from '@pages/editQuiz/EditQuiz'
 
 function App() {
   const showLoader = useAppSelector((state) => state.loader.loading)
@@ -18,7 +19,8 @@ function App() {
               <Route path="/" element={<SignIn />} />
               <Route element={<ProtectedRoute />}>
                   <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path='/edit/:id' element={<EditQuizPage />} />
+                  {/* <Route path='/edit/:id' element={<EditQuizPage />} /> */}
+                  <Route path='/edit/:id/' element={<EditQuiz />} />
               </Route>
           </Routes>
       </BrowserRouter>

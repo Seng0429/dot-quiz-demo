@@ -1,0 +1,73 @@
+.questionCard {
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    background-color: #4e46e510;
+    box-sizing: border-box;
+}
+
+.questionCardSelected {
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--accent-color);
+    border-radius: 1rem;
+    background-color: #4e46e510;
+    box-sizing: border-box;
+}
+
+.question {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.optionContainer {
+    width: 100%;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.option {
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: calc(100% - 2rem);
+}
+
+.optionName {
+    font-size: 2rem;
+    font-weight: 700;
+    width: 1rem;
+    margin-right: 1rem;
+}
+
+.optionDescription {
+    text-align: left;
+    overflow-wrap: break-word; /* Modern standard */
+    word-wrap: break-word;
+    width: calc(100% - 2rem);
+}
+
+@media (max-width: 768px) {
+    .optionContainer {
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
