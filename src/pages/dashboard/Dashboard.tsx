@@ -1,27 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { 
-  SettingOutlined, 
-  LogoutOutlined,
   PlusOutlined,
   PlayCircleOutlined,
   DashboardOutlined
 } from '@ant-design/icons';
-import { getCurrentUser } from '@/services/auth/auth';
 import QuizCard from '@/components/layouts/QuizCard/QuizCard';
 import { appPath } from '@/utils/constants';
+import DashboardHeader from './DashboardHeader';
+import AuroraRectButton from '../../components/atoms/AuroraRectButton/AuroraRectButton';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const [showUserMenu, setShowUserMenu] = useState(false);
-  const userEmail = getCurrentUser()?.email || '';
 
-  const getInitial = (email: string) => email.charAt(0).toUpperCase();
-
-  const handleLogout = () => {
-    console.log("Logging out...");
-  };
 
   const handleQuizAction = (id: string, action: string) => {
     switch (action) {
@@ -64,51 +56,14 @@ const Dashboard: React.FC = () => {
   ]
 
   return (
-    <div className={styles.dashboardContainer} onClick={() => setShowUserMenu(false)}>
-      
-      <header className={styles.header}>
-        <div>
-          <h1 className={styles.appTitle}>Welcome to dotQuiz</h1>
-        </div>
-
-        <div className={styles.headerActions} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <div 
-            className={styles.userArea} 
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowUserMenu(!showUserMenu);
-            }}
-          >
-            <span className={styles.userEmail} style={{fontSize: '0.8rem'}}>{userEmail}</span>
-            <div className={styles.avatar}>{getInitial(userEmail)}</div>
-
-            {showUserMenu && (
-              <div className={styles.dropdown}>
-                <button className={styles.dropdownItem}>
-                  <SettingOutlined /> SETTINGS
-                </button>
-                <button 
-                  className={`${styles.dropdownItem} ${styles.logoutBtn}`}
-                  onClick={handleLogout}
-                >
-                  <LogoutOutlined /> LOGOUT
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
-      
+    <div className={styles.dashboardContainer}>
+      <DashboardHeader />
       <main className={styles.mainContent}>
-        
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitle}>QUIZZES</div>
-            <button className={styles.btnPrimary} onClick={() => navigate(`${appPath.edit}/q3`)}>
-              <PlusOutlined /> New Quiz
-            </button>
+            <AuroraRectButton text="Create New Quiz" onClick={() => console.log('I am clicked')}/>
           </div>
-
           <div className={styles.quizGrid}>
             {
               QuizCardList.map((quiz) => (
@@ -122,7 +77,6 @@ const Dashboard: React.FC = () => {
             }
           </div>
         </section>
-
         <section className={styles.section}>
           <div className={styles.sectionTitle}>UPCOMING SESSIONS</div>
           <div className={styles.tableWrapper}>
@@ -146,7 +100,6 @@ const Dashboard: React.FC = () => {
             </table>
           </div>
         </section>
-
         <section className={styles.section}>
           <div className={styles.sectionTitle}>COMPLETE SESSION</div>
           <div className={styles.tableWrapper}>

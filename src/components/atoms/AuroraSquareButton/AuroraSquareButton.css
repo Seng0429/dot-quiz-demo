@@ -1,0 +1,75 @@
+.aurora-square-container {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+
+.magic-square {
+  width: 180px;
+  height: 180px;
+  /* Start with a modern square look */
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+  border-radius: 16px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button-text {
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* The Square Waving Effect */
+.aurora-square-container:hover .magic-square {
+  animation: square-wave 4s infinite alternate ease-in-out;
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.4);
+  transform: scale(1.05);
+}
+
+/* The magic here is changing the border-radius from 
+   even corners to asymmetrical "blobs" 
+*/
+@keyframes square-wave {
+  0% {
+    border-radius: 16px;
+  }
+  33% {
+    border-radius: 25% 10% 30% 15% / 15% 25% 10% 30%;
+  }
+  66% {
+    border-radius: 10% 30% 15% 25% / 30% 15% 25% 10%;
+  }
+  100% {
+    border-radius: 20% 20% 20% 20% / 20% 20% 20% 20%;
+  }
+}
+
+/* Background glow for the Aurora feel */
+.magic-square::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(25px);
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+.aurora-square-container:hover .magic-square::after {
+  opacity: 0.5;
+}

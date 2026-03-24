@@ -9,6 +9,10 @@
   --accent-color: #4f46e5;
   --accent-hover: #4338ca;
   --error-color: #ef4444; /* Added for error message */
+
+  /* Aurora Theme*/
+  --pink: #a855f7;
+  --blue: #3b82f6;
 }
 
 /* Dark Mode Variables */

@@ -1,0 +1,71 @@
+.monitor {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 250px;
+  background: #020408; /* Ultra dark for the tube effect */
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* The "Hollow Tube" - Always visible but very dim */
+.tubeBase {
+  fill: none;
+  stroke: rgba(168, 85, 247, 0.08); 
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The "Particle" - The bright light passing through */
+.particle {
+  fill: none;
+  stroke: url(#aurora-gradient);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  
+  /* Create a short segment (the particle) */
+  /* 150 is the length of the particle, 3000 is the gap */
+  stroke-dasharray: 150 3000; 
+  stroke-dashoffset: 3000; /* Start position */
+  
+  filter: drop-shadow(0 0 8px #3b82f6) drop-shadow(0 0 2px #fff);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.active .particle {
+  opacity: 1;
+  /* Sync: 1 second per wave. 
+     Since path is ~3000 units long and has 2 waves, 2s total. */
+  animation: travelThroughTube 2s infinite linear;
+}
+
+@keyframes travelThroughTube {
+  from {
+    stroke-dashoffset: 3000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Atmospheric bloom inside the tube */
+.glowLayer {
+  fill: none;
+  stroke: url(#aurora-gradient);
+  stroke-width: 12;
+  filter: blur(15px);
+  stroke-dasharray: 100 3000;
+  stroke-dashoffset: 3000;
+  opacity: 0;
+}
+
+.active .glowLayer {
+  opacity: 0.4;
+  animation: travelThroughTube 2s infinite linear;
+}

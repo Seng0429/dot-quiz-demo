@@ -5,6 +5,8 @@
   padding: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 .header {
@@ -29,6 +31,8 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .section {
@@ -229,5 +233,27 @@
 @media (min-width: 1024px) {
   .quizGrid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wavingBtn {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.wavingBtn:hover {
+  animation: rectangular-wave 3s infinite alternate ease-in-out;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+@keyframes rectangular-wave {
+  0% {
+    border-radius: 0.5rem;
+  }
+  50% {
+    border-radius: 0.8rem 0.4rem 0.7rem 0.5rem;
+  }
+  100% {
+    border-radius: 0.5rem;
   }
 }

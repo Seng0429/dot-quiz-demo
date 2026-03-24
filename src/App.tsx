@@ -8,6 +8,7 @@ import Loader from '@/components/atoms/Loader/Loader'
 import { useAppSelector } from '@/Hooks/useStore'
 // import EditQuizPage from '@pages/EditQuizPage/EditQuizPage'
 import EditQuiz from '@pages/editQuiz/EditQuiz'
+import GameSession from '@pages/gameSession/GameSession'
 
 function App() {
   const showLoader = useAppSelector((state) => state.loader.loading)
@@ -21,6 +22,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   {/* <Route path='/edit/:id' element={<EditQuizPage />} /> */}
                   <Route path='/edit/:id/' element={<EditQuiz />} />
+                  <Route path='/game' element={<GameSession />} />
               </Route>
           </Routes>
       </BrowserRouter>
