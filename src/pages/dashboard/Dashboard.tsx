@@ -9,7 +9,6 @@ import {
 import QuizCard from '@/components/layouts/QuizCard/QuizCard';
 import { appPath } from '@/utils/constants';
 import DashboardHeader from './DashboardHeader';
-import AuroraRectButton from '../../components/atoms/AuroraRectButton/AuroraRectButton';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -62,7 +61,9 @@ const Dashboard: React.FC = () => {
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitle}>QUIZZES</div>
-            <AuroraRectButton text="Create New Quiz" onClick={() => console.log('I am clicked')}/>
+            <button className={styles.iconBtn} onClick={() => console.log('I am clicked')}>
+              <PlusOutlined /> CREATE NEW QUIZ
+            </button>
           </div>
           <div className={styles.quizGrid}>
             {
