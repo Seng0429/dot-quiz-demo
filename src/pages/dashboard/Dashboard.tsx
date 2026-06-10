@@ -1,134 +1,70 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './Dashboard.module.css';
-import { 
-  PlusOutlined,
-  PlayCircleOutlined,
-  DashboardOutlined
-} from '@ant-design/icons';
-import QuizCard from '@/components/layouts/QuizCard/QuizCard';
-import { appPath } from '@/utils/constants';
-import DashboardHeader from './DashboardHeader';
+import { Avatar } from "@mui/material"
+import styles from "./Dashboard.module.css"
+import { BellOutlined, DashboardOutlined, SettingOutlined,
+  ArrowRightOutlined, MoreOutlined
+ } from "@ant-design/icons"
 
-const Dashboard: React.FC = () => {
-  const navigate = useNavigate();
-
-
-  const handleQuizAction = (id: string, action: string) => {
-    switch (action) {
-      case 'Edit':
-        console.log(`Navigating to editor for quiz: ${id}`);
-        navigate(`/edit/${id}`)
-        break;
-      case 'Host':
-        console.log(`Starting session for quiz: ${id}`);
-        break;
-      case 'Delete':
-        console.log(`Triggering delete modal for: ${id}`);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const QuizCardList = [
-    {
-      id: '1',
-      title: 'Cyber Security 101',
-      questions: 20,
-    },
-    {
-      id: '2',
-      title: 'Cyber Security 102',
-      questions: 25,
-    },
-    {
-      id: '3',
-      title: 'Cyber Security 103',
-      questions: 30,
-    },
-    {
-      id: '4',
-      title: 'Cyber Security 104',
-      questions: 35,
-    }
-  ]
-
+const Dashboard = () => {
   return (
-    <div className={styles.dashboardContainer}>
-      <DashboardHeader />
-      <main className={styles.mainContent}>
-        <section className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitle}>QUIZZES</div>
-            <button className={styles.iconBtn} onClick={() => console.log('I am clicked')}>
-              <PlusOutlined /> CREATE NEW QUIZ
-            </button>
+    <div className={styles.pageContainer}>
+      <div className={styles.leftPageContainer}>
+        <div className={styles.title}>DotQuiz</div>
+        <div className={styles.leftMenu}>
+          <div className={styles.menuItem}>
+            <DashboardOutlined />
+            <div>Dashboard</div>
           </div>
-          <div className={styles.quizGrid}>
-            {
-              QuizCardList.map((quiz) => (
-                <QuizCard
-                  id={quiz.id}
-                  title={quiz.title}
-                  questions={quiz.questions}
-                  key={quiz.id} actionHandler={handleQuizAction}
-                />
-              ))
-            }
+          <div className={styles.menuItem}>
+            <DashboardOutlined />
+            <div>Statistics</div>
           </div>
-        </section>
-        <section className={styles.section}>
-          <div className={styles.sectionTitle}>UPCOMING SESSIONS</div>
-          <div className={styles.tableWrapper}>
-            <table className={styles.sessionTable}>
-              <thead>
-                <tr>
-                  <th>Log ID</th>
-                  <th>Scheduled</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>#A9982</td>
-                  <td>Tomorrow, 10:00 AM</td>
-                  <td><span style={{color: '#10b981', fontWeight: 600}}>ACTIVE</span></td>
-                  <td><button className={styles.iconBtn}><PlayCircleOutlined /> LAUNCH</button></td>
-                </tr>
-              </tbody>
-            </table>
+          <div className={styles.menuItem}>
+            <DashboardOutlined />
+            <div>My Quizzes</div>
           </div>
-        </section>
-        <section className={styles.section}>
-          <div className={styles.sectionTitle}>COMPLETE SESSION</div>
-          <div className={styles.tableWrapper}>
-            <table className={styles.sessionTable}>
-              <thead>
-                <tr>
-                  <th>Log ID</th>
-                  <th>Participants</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>#B1003</td>
-                  <td>42</td>
-                  <td>
-                    <button className={styles.btnPrimary} style={{padding: '0.4rem 0.8rem', fontSize: '0.7rem'}}>
-                      <DashboardOutlined /> VIEW_DATA
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        </div> 
+      </div>
+      <div className={styles.rightPageContainer}>
+        <div className={styles.pageHeader}>
+          <div className={styles.filterBar}>
+            <div>My Quizzes</div>
+            <div>Upcoming</div>
+            <div>Achieved</div>
           </div>
-        </section>
-      </main>
+          <div className={styles.searchBar}>
+            <BellOutlined />
+            <SettingOutlined />
+            <Avatar alt="User Avatar" src="/avatar.png" />
+          </div>
+        </div>
+        <div className={styles.mainContent}>
+          <div>
+            <div className={styles.quizCard}>
+              <div>
+                <div className={styles.cardTag}>TECHNOLOGY</div>
+                <MoreOutlined />
+              </div>
+              <div>
+                <div className={styles.cardTitle}>
+                  Advanced Neural Networks
+                </div>
+                <div className={styles.cardInfo}>
+                  Created 1 day ago
+                </div>
+                <div className={styles.cardInfo}>
+                  Hosted 824 times  
+                </div>
+              </div>
+              <div>
+                <div>15 Questions</div>
+                <ArrowRightOutlined />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
