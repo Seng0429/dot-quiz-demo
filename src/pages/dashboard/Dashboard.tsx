@@ -1,10 +1,23 @@
-import { Avatar } from "@mui/material"
+import { useState, useEffect } from "react"
 import styles from "./Dashboard.module.css"
-import { BellOutlined, DashboardOutlined, SettingOutlined,
-  ArrowRightOutlined, MoreOutlined
+import {
+  DashboardOutlined,
  } from "@ant-design/icons"
+ import QuizCard, { QuizCardInfo } from "@/components/molecules/QuizCard/QuizCard"
+ import { useNavigate } from "react-router-dom"
+import DashboardHeader from "@/components/molecules/DashboardHeader/DashboardHeader"
 
 const Dashboard = () => {
+  const [quizList, setQuizList] = useState<QuizCardInfo[]>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setQuizList([
+      { id: 1, quizTitle: "Advanced Neural Networks", quizTag: "Technology", quizInfo1: "Created 1 day ago", quizInfo2: "Hosted 1 time", quizQuestionsNumTotal: 10 },
+      { id: 2, quizTitle: "Introduction to Science", quizTag: "Science", quizInfo1: "Created 2 days ago", quizInfo2: "Hosted  10 times", quizQuestionsNumTotal: 15 },
+    ]);
+  }, []);
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.leftPageContainer}>
@@ -25,41 +38,17 @@ const Dashboard = () => {
         </div> 
       </div>
       <div className={styles.rightPageContainer}>
-        <div className={styles.pageHeader}>
-          <div className={styles.filterBar}>
-            <div>My Quizzes</div>
-            <div>Upcoming</div>
-            <div>Achieved</div>
-          </div>
-          <div className={styles.searchBar}>
-            <BellOutlined />
-            <SettingOutlined />
-            <Avatar alt="User Avatar" src="/avatar.png" />
-          </div>
-        </div>
+        <DashboardHeader />
         <div className={styles.mainContent}>
-          <div>
-            <div className={styles.quizCard}>
-              <div>
-                <div className={styles.cardTag}>TECHNOLOGY</div>
-                <MoreOutlined />
-              </div>
-              <div>
-                <div className={styles.cardTitle}>
-                  Advanced Neural Networks
-                </div>
-                <div className={styles.cardInfo}>
-                  Created 1 day ago
-                </div>
-                <div className={styles.cardInfo}>
-                  Hosted 824 times  
-                </div>
-              </div>
-              <div>
-                <div>15 Questions</div>
-                <ArrowRightOutlined />
-              </div>
-            </div>
+          <div className={styles.cardListContainer}>
+            {
+              quizList && quizList.map((quiz) => (
+                <QuizCard key={quiz.id} cardInfo={quiz} />
+              ))
+            }
+          </div>
+          <div className={styles.createQuizButton} onClick={() => navigate('/create')}>
+            <div>+</div>
           </div>
         </div>
       </div>

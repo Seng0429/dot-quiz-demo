@@ -4,21 +4,8 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--card-border);
     border-radius: 1rem;
-    background-color: #4e46e510;
-    box-sizing: border-box;
-}
-
-.questionCardSelected {
-    width: 100%;
-    max-width: 1200px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--accent-color);
-    border-radius: 1rem;
-    background-color: #4e46e510;
+    background-color: white;
     box-sizing: border-box;
 }
 
@@ -26,6 +13,8 @@
     background-color: white;
     border-radius: 8px;
     padding: 1rem;
+    border: 1px solid var(--dark-grey);
+    height: 300px;
 }
 
 .optionContainer {
@@ -38,7 +27,7 @@
 
 .option {
     border-radius: 8px;
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--dark-grey);
     background-color: white;
     display: flex;
     flex-direction: row;

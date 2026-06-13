@@ -1,0 +1,47 @@
+.quizCard {
+  background-color: white;
+  border-radius: 8px;
+  width: 300px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quizCard > div:first-child {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+}
+
+.quizCard > div:nth-child(2) {
+  margin: 16px 0;
+
+  .cardTitle {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+}
+
+.quizCard > div:last-child {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid var(--medium-grey);
+  padding-top: 16px;
+}
+
+.cardTag {
+  height: 24px;
+  padding: 4px 8px;
+  background-color: var(--primary-color);
+  background-color: var(--medium-grey);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

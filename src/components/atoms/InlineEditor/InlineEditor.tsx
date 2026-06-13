@@ -17,7 +17,6 @@ const MyEditor = ({ content, saveHandler }: {content: Content, saveHandler: (con
   return (
     <div className="border p-4">
       <EditorContent editor={editor} />
-      <button onClick={handleSave}>Save Document</button>
     </div>
   )
 }

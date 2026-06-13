@@ -49,74 +49,48 @@
   flex-direction: column;
 }
 
-.pageHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-}
-
-.filterBar {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-}
-
-.searchBar {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  align-items: center;
-}
-
 .mainContent {
-  flex-grow: 1;
   display: flex;
+  height: 100%;
+  flex-grow: 1;
   flex-direction: column;
   padding: 16px;
   background-color: var(--light-grey);
+  position: relative;
 }
 
-.quizCard {
+.createQuizButton {
+  height: 32px;
+  width: 32px;
+  padding: 8px;
   background-color: white;
-  border-radius: 8px;
-  width: 300px;
-  padding: 24px;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid var(--medium-grey);
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.quizCard > div:first-child {
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.quizCard > div:nth-child(2) {
-  margin: 16px 0;
-
-  .cardTitle {
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-}
-
-.quizCard > div:last-child {
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-top: 1px solid var(--medium-grey);
-  padding-top: 16px;
-}
-
-.cardTag {
+.createQuizButton > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 24px;
-  padding: 4px 8px;
-  background-color: var(--primary-color);
-  background-color: var(--medium-grey);
-  font-size: 12px;
-  font-weight: 500;
-  border-radius: 4px;
-  text-align: center;
+  width: 24px;
+  margin-top: -4px;
+}
+
+.createQuizButton:hover {
+  background-color: var(--dark-grey);
+}
+
+.cardListContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }

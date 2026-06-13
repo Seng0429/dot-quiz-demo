@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react"
-import styles from "./EditQuiz.module.css"
-import { Question } from "../../types/quiz"
-import QuestionCard from "@/components/layouts/QuestionCard/QuestionCard"
+import { Question } from "@/types/quiz"
 
-const mockQuestionList: Question[] = [
+export const mockQuestionList: Question[] = [
     {
         questionId: 0,
         question: 'What is the capital of France?',
@@ -59,37 +56,3 @@ const mockQuestionList: Question[] = [
         answer: 'B',
     }
 ]
-
-const EditQuiz: React.FC = () => {
-    const [selectedQuestionCard, setSelectedQuestionCard] = useState<number>(0)
-    const [questionList, setQuestionList] = useState<Question[]>([])
-
-    useEffect(() => {
-        setQuestionList(mockQuestionList)
-    }, [])
-
-    return (
-        <div className={styles.pageContainer}>
-            <div className={styles.pageHeader}>
-                <h1>Edit Quiz</h1>
-                <button className={styles.saveButton}>Save Progress</button>
-            </div>
-            <div className={styles.pageContent}>
-                {
-                    questionList.map((questionInfo) => (
-                        <QuestionCard
-                            key={questionInfo.questionId}
-                            questionInfo={questionInfo}
-                            selectedQuestionCard={selectedQuestionCard}
-                            setSelectedQuestionCard={setSelectedQuestionCard}
-                            saveHandler={(content) => setQuestionList}
-                        />
-                    ))
-                }
-                <button className={styles.addQuestionButton}>+ Add Question</button>
-            </div>
-        </div>
-    )
-}
-
-export default EditQuiz 

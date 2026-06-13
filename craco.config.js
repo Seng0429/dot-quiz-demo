@@ -8,7 +8,8 @@ module.exports = {
       '@hooks': path.resolve(__dirname, 'src/customHooks'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@services': path.resolve(__dirname, 'src/services'),
-      '@utils': path.resolve(__dirname, 'src/utils')
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@types': path.resolve(__dirname, 'src/types'),
     }
   }
 };
