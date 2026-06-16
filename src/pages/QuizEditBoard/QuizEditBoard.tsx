@@ -11,11 +11,12 @@ interface QuizEditBoardProps {
 
 const QuizEditBoard: React.FC<QuizEditBoardProps> = (props: QuizEditBoardProps) => {
     const { mode } = props;
-    const [selectedQuestionCard, setSelectedQuestionCard] = useState<number>(0)
-    const [questionList, setQuestionList] = useState<Question>()
+    const [questionList, setQuestionList] = useState<Question[]>()
+    const [currentQuestion, setCurrentQuestion] = useState<Question>()
 
     useEffect(() => {
-        setQuestionList(mockQuestionList[0])
+        setQuestionList(mockQuestionList)
+        setCurrentQuestion(mockQuestionList[0])
     }, [])
 
     return (
@@ -30,10 +31,9 @@ const QuizEditBoard: React.FC<QuizEditBoardProps> = (props: QuizEditBoardProps) 
                     <div className={styles.addQuestionButton}>Add Question</div>
                 </div>
                 <div className={styles.questionContainer}>
-                    {questionList &&
+                    {currentQuestion &&
                         <QuestionCard
-                            questionInfo={questionList}
-                            setSelectedQuestionCard={setSelectedQuestionCard}
+                            questionInfo={currentQuestion}
                             saveHandler={(content) => setQuestionList}
                         />
                     }

@@ -5,19 +5,18 @@ import MyEditor from "@/components/atoms/InlineEditor/InlineEditor"
 
 interface QuestionCardProps {
     questionInfo: Question;
-    setSelectedQuestionCard: React.Dispatch<React.SetStateAction<number>>;
     saveHandler: (content: string) => void;
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = (props) => {
-    const { questionInfo, setSelectedQuestionCard, saveHandler} = props;
+    const { questionInfo, saveHandler} = props;
 
     return (
         <div
-            onClick={() => setSelectedQuestionCard(questionInfo.questionId)}
             key={questionInfo.questionId}
             className={styles.questionCard}
         >
+            <div></div>
             <div className={styles.question}>
                 <MyEditor saveHandler={saveHandler} content={questionInfo.question} />
             </div>

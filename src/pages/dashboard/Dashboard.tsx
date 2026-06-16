@@ -6,6 +6,7 @@ import {
  import QuizCard, { QuizCardInfo } from "@/components/molecules/QuizCard/QuizCard"
  import { useNavigate } from "react-router-dom"
 import DashboardHeader from "@/components/molecules/DashboardHeader/DashboardHeader"
+import {} from "@/utils/mockData"
 
 const Dashboard = () => {
   const [quizList, setQuizList] = useState<QuizCardInfo[]>();

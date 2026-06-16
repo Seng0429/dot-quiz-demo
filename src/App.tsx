@@ -5,7 +5,7 @@ import SignIn from '@/pages/SignInBoard/SignIn'
 import Dashboard from '@/pages/Dashboard/Dashboard'
 import ProtectedRoute from '@/components/atoms/ProtectedRoute/ProtectedRoute'
 import Loader from '@/components/atoms/Loader/Loader'
-import { useAppSelector } from '@/Hooks/useStore'
+import { useAppSelector } from '@/hooks/useStore'
 // import EditQuizPage from '@pages/EditQuizPage/EditQuizPage'
 import EditQuiz from '@/pages/QuizEditBoard/QuizEditBoard'
 

@@ -3,3 +3,11 @@
   flex-direction: row;
   gap: 24px;
 }
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--dark-grey);
+  padding: 8px;
+}

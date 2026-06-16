@@ -7,8 +7,8 @@ const QuizEditBoardHeader = () => {
         <PageHeader children={
             <div className={styles.headerContainer}>
                 <div className={styles.functionBar}>
-                    <div>Preview</div>
-                    <div>Publish</div>
+                    <div className={styles.button}>Preview</div>
+                    <div className={styles.button}>Publish</div>
                 </div>
             </div>
         } />

@@ -1,3 +1,5 @@
+import { Question } from "@/types/quiz"
+
 enum appPath {
   dashboard = '/dashboard',
   preview = '/preview',
@@ -13,26 +15,12 @@ enum quizMode {
 
 export type quizModeType = quizMode.preview | quizMode.create |quizMode.edit
 
-interface OptionsITF {
-  optionId: string
-  description: string
-  isAnswer: boolean
-}
-
-interface QuestionITF {
-  questionId: string
-  questionText: string
-  options: OptionsITF[]
-  order: number,
-  timeLimit: number
-}
-
 export interface QuizCollectionITF {
   quizId: string
   quizName: string
   quizDescription: string
   quizMode: 'open' | 'closed' | 'completed'
-  questions: QuestionITF[]
+  questions: Question[]
 }
 
 enum firebaseAuthCode {

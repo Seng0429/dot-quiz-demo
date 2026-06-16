@@ -28,7 +28,7 @@
         "src/components/*"
       ],
       "@hooks/*": [
-        "src/Hooks/*"
+        "src/hooks/*"
       ],
       "@pages/*": [
         "src/pages/*"
