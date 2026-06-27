@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styles from "./QuizEditBoard.module.css"
-import { Question } from "../../types/quiz"
+import { Option, Question } from "../../types/quiz"
 import QuestionCard from "@/components/atoms/QuestionCard/QuestionCard"
 import { mockQuestionList } from "@/utils/mockData"
 import QuizEditBoardHeader from "@/components/molecules/QuizEditBoardHeader/QuizEditBoardHeader"
@@ -13,6 +13,7 @@ const QuizEditBoard: React.FC<QuizEditBoardProps> = (props: QuizEditBoardProps) 
     const { mode } = props;
     const [questionList, setQuestionList] = useState<Question[]>()
     const [currentQuestion, setCurrentQuestion] = useState<Question>()
+    const [option, setOption] = useState<Option[]>([])
 
     useEffect(() => {
         setQuestionList(mockQuestionList)
@@ -34,7 +35,9 @@ const QuizEditBoard: React.FC<QuizEditBoardProps> = (props: QuizEditBoardProps) 
                     {currentQuestion &&
                         <QuestionCard
                             questionInfo={currentQuestion}
-                            saveHandler={(content) => setQuestionList}
+                            questionSaveHandler={setCurrentQuestion}
+                            option={option}
+                            optionSaveHandler={setOption}
                         />
                     }
                 </div>

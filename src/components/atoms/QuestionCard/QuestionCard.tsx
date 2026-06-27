@@ -1,15 +1,20 @@
 import React from "react"
 import styles from "./QuestionCard.module.css"
-import { Question } from "../../../types/quiz"
+import { Option, Question } from "../../../types/quiz"
 import MyEditor from "@/components/atoms/InlineEditor/InlineEditor"
+
+type SetStateAction<S> = S | ((prevState: S) => S);
+type Dispatch<A> = (action: A) => void;
 
 interface QuestionCardProps {
     questionInfo: Question;
-    saveHandler: (content: string) => void;
+    questionSaveHandler: Dispatch<SetStateAction<Question | undefined>>;
+    option: Option[];
+    optionSaveHandler: Dispatch<SetStateAction<Option[]>>
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = (props) => {
-    const { questionInfo, saveHandler} = props;
+    const { questionInfo, questionSaveHandler, option, optionSaveHandler} = props;
 
     return (
         <div
@@ -18,14 +23,16 @@ const QuestionCard: React.FC<QuestionCardProps> = (props) => {
         >
             <div></div>
             <div className={styles.question}>
-                <MyEditor saveHandler={saveHandler} content={questionInfo.question} />
+                <MyEditor saveHandler={questionSaveHandler} content={questionInfo.question} />
             </div>
             <div className={styles.optionContainer}>
                 {
                     questionInfo.option.map((optionInfo, index) => {
                         return(
                             <div key={index} className={styles.option}>
-                                <div className={styles.optionName}>{optionInfo.selectionName}</div>
+                                <div className={styles.optionName}>
+                                    <MyEditor saveHandler={optionSaveHandler} content={option[index]}/>
+                                </div>
                                 <div className={styles.optionDescription}>{optionInfo.description}</div>
                             </div>
                         )

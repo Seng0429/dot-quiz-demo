@@ -23,6 +23,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    align-items: stretch; /* ← makes A/B same height, C/D same height */
 }
 
 .option {
@@ -34,7 +35,9 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    width: calc(100% - 2rem);
+    width: 100%;        /* ← was calc(100% - 2rem), grid already handles spacing */
+    box-sizing: border-box; /* ← padding won't cause overflow */
+    min-height: 80px;   /* ← guarantees a baseline even when content is empty */
 }
 
 .optionName {
