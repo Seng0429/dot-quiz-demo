@@ -54,6 +54,11 @@
     width: calc(100% - 2rem);
 }
 
+.borderlessInputField {
+    border: none;
+    
+}
+
 @media (max-width: 768px) {
     .optionContainer {
         width: 100%;

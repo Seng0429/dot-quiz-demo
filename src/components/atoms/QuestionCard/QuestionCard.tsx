@@ -8,13 +8,11 @@ type Dispatch<A> = (action: A) => void;
 
 interface QuestionCardProps {
     questionInfo: Question;
-    questionSaveHandler: Dispatch<SetStateAction<Question | undefined>>;
-    option: Option[];
-    optionSaveHandler: Dispatch<SetStateAction<Option[]>>
+    questionSaveHandler: Dispatch<SetStateAction<Question>>;
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = (props) => {
-    const { questionInfo, questionSaveHandler, option, optionSaveHandler} = props;
+    const { questionInfo, questionSaveHandler} = props;
 
     return (
         <div
@@ -23,17 +21,31 @@ const QuestionCard: React.FC<QuestionCardProps> = (props) => {
         >
             <div></div>
             <div className={styles.question}>
-                <MyEditor saveHandler={questionSaveHandler} content={questionInfo.question} />
+                <input
+                    className={styles.borderlessInputField}
+                    value={questionInfo.question}
+                    onChange={(e) => questionSaveHandler(prev => ({
+                        ...prev,
+                        question: e.target.value
+                    }))}
+                />
             </div>
             <div className={styles.optionContainer}>
                 {
                     questionInfo.option.map((optionInfo, index) => {
                         return(
                             <div key={index} className={styles.option}>
-                                <div className={styles.optionName}>
-                                    <MyEditor saveHandler={optionSaveHandler} content={option[index]}/>
+                                <div className={styles.optionName}></div>
+                                <div className={styles.optionDescription}>
+                                    <input
+                                        className={styles.borderlessInputField}
+                                        value={optionInfo.description}
+                                        onChange={(e) => questionSaveHandler(prev => ({
+                                            ...prev,
+                                            description: e.target.value
+                                        }))}
+                                    />
                                 </div>
-                                <div className={styles.optionDescription}>{optionInfo.description}</div>
                             </div>
                         )
                     })
