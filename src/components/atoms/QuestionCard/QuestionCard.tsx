@@ -9,10 +9,12 @@ type Dispatch<A> = (action: A) => void;
 interface QuestionCardProps {
     questionInfo: Question;
     questionSaveHandler: Dispatch<SetStateAction<Question>>;
+    optionList: Option[];
+    optionSaveHandler: Dispatch<SetStateAction<Option[]>>;
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = (props) => {
-    const { questionInfo, questionSaveHandler} = props;
+    const { questionInfo, questionSaveHandler, optionList, optionSaveHandler } = props;
 
     return (
         <div
@@ -32,18 +34,24 @@ const QuestionCard: React.FC<QuestionCardProps> = (props) => {
             </div>
             <div className={styles.optionContainer}>
                 {
-                    questionInfo.option.map((optionInfo, index) => {
+                    optionList.map((optionInfo, index) => {
                         return(
                             <div key={index} className={styles.option}>
-                                <div className={styles.optionName}></div>
+                                <div className={styles.optionName}>{optionInfo.selectionName}</div>
                                 <div className={styles.optionDescription}>
                                     <input
                                         className={styles.borderlessInputField}
-                                        value={optionInfo.description}
-                                        onChange={(e) => questionSaveHandler(prev => ({
-                                            ...prev,
-                                            description: e.target.value
-                                        }))}
+                                        value={optionList[index].description}
+                                        onChange={(e) => optionSaveHandler(
+                                            prev => {
+                                                const newOptionList = [...prev];
+                                                newOptionList[index] = {
+                                                    ...newOptionList[index],
+                                                    description: e.target.value
+                                                };
+                                                return newOptionList;
+                                            }
+                                        )}
                                     />
                                 </div>
                             </div>

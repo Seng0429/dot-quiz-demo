@@ -2,12 +2,12 @@ interface Option {
     optionId: number,
     selectionName: string,
     description: string,
+    questionId: number
 }
 
 interface Question {
     questionId: number,
     question: string,
-    option: Option[],
     answer: string
 }
 

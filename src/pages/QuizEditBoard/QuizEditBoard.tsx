@@ -15,9 +15,34 @@ const QuizEditBoard: React.FC<QuizEditBoardProps> = (props: QuizEditBoardProps) 
     const [currentQuestion, setCurrentQuestion] = useState<Question>({
         questionId: 0,
         question: '',
-        option: [],
         answer: ''
     })
+    const [currentOptionList, setCurrentOptionList] = useState<Option[]>([
+        {
+            optionId: 0,
+            selectionName: 'A',
+            description: 'Sample1',
+            questionId: 0
+        },
+        {
+            optionId: 1,
+            selectionName: 'B',
+            description: 'Sample2',
+            questionId: 0
+        },
+        {
+            optionId: 2,
+            selectionName: 'C',
+            description: 'Sample3',
+            questionId: 0
+        },
+        {
+            optionId: 3,
+            selectionName: 'D',
+            description: 'Sample4',
+            questionId: 0
+        }
+    ])
 
     useEffect(() => {
         setQuestionList(mockQuestionList)
@@ -40,6 +65,8 @@ const QuizEditBoard: React.FC<QuizEditBoardProps> = (props: QuizEditBoardProps) 
                         <QuestionCard
                             questionInfo={currentQuestion}
                             questionSaveHandler={setCurrentQuestion}
+                            optionList={currentOptionList}
+                            optionSaveHandler={setCurrentOptionList}
                         />
                     }
                 </div>
