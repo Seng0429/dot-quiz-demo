@@ -1,4 +1,4 @@
-import { Question } from "@/types/quiz"
+import { Question, Option } from "@/types/quiz"
 
 const mockQuestionList: Question[] = [
     {
@@ -10,6 +10,33 @@ const mockQuestionList: Question[] = [
         questionId: 1,
         question: 'What is the capital of France?',
         answer: 'B',
+    }
+]
+
+const mockOptionList: Option[] = [
+    {
+        optionId: 0,
+        selectionName: 'A',
+        description: 'Sample1',
+        questionId: 0
+    },
+    {
+        optionId: 1,
+        selectionName: 'B',
+        description: 'Sample2',
+        questionId: 0
+    },
+    {
+        optionId: 2,
+        selectionName: 'C',
+        description: 'Sample3',
+        questionId: 0
+    },
+    {
+        optionId: 3,
+        selectionName: 'D',
+        description: 'Sample4',
+        questionId: 0
     }
 ]
 
@@ -84,4 +111,4 @@ const sampleQuizObj = {
     ]
 }
 
-export { mockQuestionList, mockQuizList, sampleQuizObj }
+export { mockQuestionList, mockQuizList, sampleQuizObj, mockOptionList }

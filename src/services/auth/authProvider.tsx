@@ -23,7 +23,7 @@ const AuthProvider = (props: AuthContextProps) => {
     return <div>Loading authentication state...</div>
   }
 
-const AuthContext = createContext<any>(null)
+  const AuthContext = createContext<any>(null)
   return <AuthContext.Provider value={{ currentUser }}>{props.children}</AuthContext.Provider>
 }
 

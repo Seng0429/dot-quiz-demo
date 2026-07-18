@@ -15,6 +15,7 @@
     padding: 1rem;
     border: 1px solid var(--dark-grey);
     height: 300px;
+    display: flex;
 }
 
 .optionContainer {
@@ -56,7 +57,11 @@
 
 .borderlessInputField {
     border: none;
-    
+    outline: none; /* Optional: removes the blue highlight on focus */
+    width: 100%;   /* Force it to fill the container */
+    display: block; /* Ensure it behaves like a block element */
+    padding: 0;    /* Remove default input padding if necessary */
+    font: inherit;
 }
 
 @media (max-width: 768px) {

@@ -22,4 +22,11 @@ interface Quiz {
     questionList: Question[]
 }
 
-export type { Option, Question, Quiz };
+interface QuestionPreviewCard {
+    id: Number,
+    title: String,
+    questionId: Number,
+    isSelected: Boolean
+}
+
+export type { Option, Question, Quiz, QuestionPreviewCard };
